@@ -26,7 +26,7 @@ public class SparkSourceSetter {
         spark.catalog().setCurrentCatalog("clickhouse");
     }
 
-    public Dataset<Row> getFromJson(SparkSession spark, String jsonPath) {
+    public static Dataset<Row> getFromJson(SparkSession spark, String jsonPath) {
         return spark.read().json(jsonPath).cache();
     }
 

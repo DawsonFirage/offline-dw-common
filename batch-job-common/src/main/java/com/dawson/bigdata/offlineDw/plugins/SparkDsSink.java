@@ -25,7 +25,7 @@ public class SparkDsSink {
      * @param dataSet 需要写出的DataSet
      * @param outputPath Spark临时视图名称
      */
-    public void toHDFS(Dataset<Row> dataSet, String outputPath) {
+    public static void toHDFS(Dataset<Row> dataSet, String outputPath) {
         System.setProperty("HADOOP_USER_NAME", "admin");
 
         dataSet.coalesce(1)
@@ -42,7 +42,7 @@ public class SparkDsSink {
      * @param targetDbName 目标数据库
      * @param targetTableName 目标表
      */
-    public void toDatabase(Dataset<Row> dataSet, String targetDbName, String targetTableName) throws AnalysisException {
+    public static void toDatabase(Dataset<Row> dataSet, String targetDbName, String targetTableName) throws AnalysisException {
         SparkSession spark = SparkSessionUtil.get();
 
         String sourceTable = targetTableName + "_tmp";

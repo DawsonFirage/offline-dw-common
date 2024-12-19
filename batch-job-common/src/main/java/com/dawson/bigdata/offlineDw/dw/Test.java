@@ -12,11 +12,10 @@ public class Test extends EtlTemplate {
     public void etl() throws IOException {
         SparkSession spark = SparkSessionUtil.get();
 
-        spark.sql("Select 'spark sql running...'")
-                .show();
+//        ClickhouseConf chConf = ClickhouseConf.init();
+        System.setProperty("HADOOP_HOME", "null");
+        String hadoopHome = System.getenv("HADOOP_HOME");
+        System.out.printf(hadoopHome);
 
-        ClickhouseConf clickhouseConf = ClickhouseConf.init();
-
-        System.out.println(clickhouseConf.getHost());
     }
 }

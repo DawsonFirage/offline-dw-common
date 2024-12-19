@@ -18,11 +18,13 @@ public class EtlCommonApp {
         Class<?> clazz = Class.forName(className);
         Object instance = clazz.getDeclaredConstructor().newInstance();
 
-        clazz.getMethod(setupMethod).invoke(instance);
+        try {
+            clazz.getMethod(setupMethod).invoke(instance);
 
-        clazz.getMethod(eltMethod).invoke(instance);
-
-        clazz.getMethod(cleanupMethod).invoke(instance);
-
+            clazz.getMethod(eltMethod).invoke(instance);
+        } finally {
+            clazz.getMethod(cleanupMethod).invoke(instance);
+        }
+        
     }
 }
