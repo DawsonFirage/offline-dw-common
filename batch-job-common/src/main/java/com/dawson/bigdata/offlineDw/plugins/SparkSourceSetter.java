@@ -15,8 +15,10 @@ public class SparkSourceSetter {
      * @param spark Spark Session
      */
     public static void setClickhouseCatalog(SparkSession spark) throws IOException {
+        // TODO 由用户自己传入或重载
         ClickhouseConf clickhouseConf = ClickhouseConf.init();
 
+        // TODO Spark config 常量应存在constant中
         spark.conf().set("spark.sql.catalog.clickhouse", ClickHouseCatalog.class.getName());
         spark.conf().set("spark.sql.catalog.clickhouse.host", clickhouseConf.getHost());
         spark.conf().set("spark.sql.catalog.clickhouse.port", clickhouseConf.getPort());

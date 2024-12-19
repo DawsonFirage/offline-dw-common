@@ -43,6 +43,7 @@ public class SparkDsSink {
      * @param targetTableName 目标表
      */
     public static void toDatabase(Dataset<Row> dataSet, String targetDbName, String targetTableName) throws AnalysisException {
+        // TODO 当前只支持设置对应 DB 的 Catalog 后写入。应支持从不同源读后向不同源写。
         SparkSession spark = SparkSessionUtil.get();
 
         String sourceTable = targetTableName + "_tmp";

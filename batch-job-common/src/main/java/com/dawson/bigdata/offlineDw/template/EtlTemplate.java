@@ -21,6 +21,13 @@ public abstract class EtlTemplate {
                 conf.get(SparkConfConstant.SPARK_MASTER, "local[*]"));
 
         SparkSession spark = SparkSessionUtil.getSession(conf);
+
+        String jobSuccessFlag = SparkConfConstant.MAPREDUCE_MARK_SUCCESSFUL_JOBS_FLAG;
+        // 设置写文件默认不产生 _success 文件
+        spark.sparkContext()
+                .hadoopConfiguration()
+                .set(jobSuccessFlag, conf.get("spark." + jobSuccessFlag, "false"));
+
         SparkSessionUtil.set(spark);
     }
 
